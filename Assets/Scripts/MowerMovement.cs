@@ -20,11 +20,13 @@ public class MowerMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (destination.x == transform.position.x && destination.z == transform.position.z) {
-            if (Input.GetAxisRaw("Horizontal") != 0) {
-                destination.x = transform.position.x + gardener.tileSize * gardener.voxelSize * Input.GetAxisRaw("Horizontal");
+            float x = transform.position.x + gardener.tileSize * gardener.voxelSize * Input.GetAxisRaw("Horizontal");
+            float z = transform.position.z + gardener.tileSize * gardener.voxelSize * Input.GetAxisRaw("Vertical");
+            if (Input.GetAxisRaw("Horizontal") != 0 && x >= 0 && x <= gardener.voxelSize * gardener.tileSize * gardener.gardenSize.x) {
+                destination.x = x;
                 direction = destination - transform.position;
-            } else if (Input.GetAxisRaw("Vertical") != 0) {
-                destination.z = transform.position.z + gardener.tileSize * gardener.voxelSize * Input.GetAxisRaw("Vertical");
+            } else if (Input.GetAxisRaw("Vertical") != 0 && z >= 0 && z <= gardener.voxelSize * gardener.tileSize * gardener.gardenSize.y) {
+                destination.z = z;
                 direction = destination - transform.position;
             }
         } else {
