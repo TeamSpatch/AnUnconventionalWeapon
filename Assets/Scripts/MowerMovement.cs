@@ -22,15 +22,14 @@ public class MowerMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (destination.x == transform.position.x && destination.z == transform.position.z) {
-            float x = transform.position.x;
+            float x = Mathf.Round(transform.position.x / (gardener.tileSize * gardener.voxelSize)) * gardener.tileSize * gardener.voxelSize;
             x = x + gardener.tileSize * gardener.voxelSize * Input.GetAxisRaw("Horizontal");
-            float z = transform.position.z;
+            float z = Mathf.Round(transform.position.z / (gardener.tileSize * gardener.voxelSize)) * gardener.tileSize * gardener.voxelSize;
             z = z + gardener.tileSize * gardener.voxelSize * Input.GetAxisRaw("Vertical");
-            Debug.Log(x + " " + z);
-            if (Input.GetAxisRaw("Horizontal") != 0 && x >= 0 && x < gardener.voxelSize * gardener.tileSize * gardener.gardenSize.x) {
+            if (Input.GetAxisRaw("Horizontal") != 0 && x >= 0 && x < gardener.voxelSize * gardener.tileSize * (gardener.gardenSize.x - 1)) {
                 destination.x = x;
                 UpdateMovement();
-            } else if (Input.GetAxisRaw("Vertical") != 0 && z >= 0 && z < gardener.voxelSize * gardener.tileSize * gardener.gardenSize.y) {
+            } else if (Input.GetAxisRaw("Vertical") != 0 && z >= 0 && z < gardener.voxelSize * gardener.tileSize * (gardener.gardenSize.y - 1)) {
                 destination.z = z;
                 UpdateMovement();
             }
