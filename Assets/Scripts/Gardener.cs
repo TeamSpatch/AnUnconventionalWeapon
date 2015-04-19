@@ -51,11 +51,11 @@ public class Gardener : MonoBehaviour
     void Update()
     {
         float good = bushPower * bushCount / (tileSize * tileSize) + golfPower * golfCount / (tileSize * tileSize);
-        if (good >= 258f) {
+        if (good >= 516f) {
             Application.LoadLevel(4);
         } else {
             float bad = clayPower * clayCount / (tileSize * tileSize) + molehillPower * molehillCount;
-            if (bad >= 260f) {
+            if (bad >= 520f) {
                 Application.LoadLevel(3);
             }
         }

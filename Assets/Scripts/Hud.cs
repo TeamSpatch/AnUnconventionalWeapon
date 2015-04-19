@@ -12,12 +12,20 @@ public class Hud : MonoBehaviour
 
     float scoreX;
     float deathX;
+    float scaleFactor;
+    float bigHeight;
+    float smallHeight;
+    float borderSize;
     Gardener gardener;
 
     void Start()
     {
-        scoreX = Screen.width / 2f + 448f;
-        deathX = Screen.width / 2f - 448f;
+        scaleFactor = GameObject.Find("HUD").GetComponent<Canvas>().scaleFactor;
+        bigHeight = 44f * scaleFactor;
+        smallHeight = 32f * scaleFactor;
+        borderSize = 3f * scaleFactor;
+        scoreX = (1920f - 50f - 14f) * scaleFactor;
+        deathX = (50f + 14f) * scaleFactor;
         gardener = GameObject.Find("Garden").GetComponent<Gardener>();
     }
 
@@ -29,33 +37,33 @@ public class Hud : MonoBehaviour
 
     void DoGood()
     {
-        float bushLength = gardener.bushPower * gardener.bushCount / (gardener.tileSize * gardener.tileSize);
+        float bushLength = gardener.bushPower * gardener.bushCount / (gardener.tileSize * gardener.tileSize) * scaleFactor;
         if (bushLength > 0) {
-            GUI.DrawTexture(new Rect(scoreX - bushLength, Screen.height - 22f, bushLength, 22f), bush);
-            GUI.DrawTexture(new Rect(scoreX - bushLength, Screen.height - 22.5f, bushLength, 1.5f), border);
-            GUI.DrawTexture(new Rect(scoreX - bushLength - 1.5f, Screen.height - 22.5f, 1.5f, 22.5f), border);
+            GUI.DrawTexture(new Rect(scoreX - bushLength, Screen.height - bigHeight, bushLength, bigHeight), bush);
+            GUI.DrawTexture(new Rect(scoreX - bushLength, Screen.height - bigHeight - borderSize, bushLength, borderSize), border);
+            GUI.DrawTexture(new Rect(scoreX - bushLength - borderSize, Screen.height - bigHeight - borderSize, borderSize, bigHeight + borderSize), border);
         }
-        float golfLength = gardener.golfPower * gardener.golfCount / (gardener.tileSize * gardener.tileSize);
+        float golfLength = gardener.golfPower * gardener.golfCount / (gardener.tileSize * gardener.tileSize) * scaleFactor;
         if (golfLength > 0) {
-            GUI.DrawTexture(new Rect(scoreX - bushLength - golfLength, Screen.height - 16f, golfLength, 16f), golf);
-            GUI.DrawTexture(new Rect(scoreX - bushLength - golfLength, Screen.height - 17.5f, golfLength, 1.5f), border);
-            GUI.DrawTexture(new Rect(scoreX - bushLength - golfLength - 1.5f, Screen.height - 17.5f, 1.5f, 17.5f), border);
+            GUI.DrawTexture(new Rect(scoreX - bushLength - golfLength, Screen.height - smallHeight, golfLength, smallHeight), golf);
+            GUI.DrawTexture(new Rect(scoreX - bushLength - golfLength, Screen.height - smallHeight - borderSize, golfLength, borderSize), border);
+            GUI.DrawTexture(new Rect(scoreX - bushLength - golfLength - borderSize, Screen.height - smallHeight - borderSize, borderSize, smallHeight + borderSize), border);
         }
     }
 
     void DoBad()
     {
-        float clayLength = gardener.clayPower * gardener.clayCount / (gardener.tileSize * gardener.tileSize);
+        float clayLength = gardener.clayPower * gardener.clayCount / (gardener.tileSize * gardener.tileSize) * scaleFactor;
         if (clayLength > 0) {
-            GUI.DrawTexture(new Rect(deathX, Screen.height - 17f, clayLength, 17f), clay);
-            GUI.DrawTexture(new Rect(deathX, Screen.height - 18.5f, clayLength, 1.5f), border);
-            GUI.DrawTexture(new Rect(deathX + clayLength, Screen.height - 18.5f, 1.5f, 18.5f), border);
+            GUI.DrawTexture(new Rect(deathX, Screen.height - smallHeight, clayLength, smallHeight), clay);
+            GUI.DrawTexture(new Rect(deathX, Screen.height - smallHeight - borderSize, clayLength, borderSize), border);
+            GUI.DrawTexture(new Rect(deathX + clayLength, Screen.height - smallHeight - borderSize, borderSize, smallHeight + borderSize), border);
         }
-        float molehillLength = gardener.molehillPower * gardener.molehillCount;
+        float molehillLength = gardener.molehillPower * gardener.molehillCount * scaleFactor;
         if (molehillLength > 0) {
-            GUI.DrawTexture(new Rect(deathX + clayLength, Screen.height - 17f, molehillLength, 17f), molehill);
-            GUI.DrawTexture(new Rect(deathX + clayLength, Screen.height - 18.5f, molehillLength, 1.5f), border);
-            GUI.DrawTexture(new Rect(deathX + clayLength + molehillLength, Screen.height - 18.5f, 1.5f, 18.5f), border);
+            GUI.DrawTexture(new Rect(deathX + clayLength, Screen.height - smallHeight, molehillLength, smallHeight), molehill);
+            GUI.DrawTexture(new Rect(deathX + clayLength, Screen.height - smallHeight - borderSize, molehillLength, borderSize), border);
+            GUI.DrawTexture(new Rect(deathX + clayLength + molehillLength, Screen.height - smallHeight - borderSize, borderSize, smallHeight + borderSize), border);
         }
     }
 }
