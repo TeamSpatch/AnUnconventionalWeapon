@@ -7,56 +7,48 @@ public class MowerAnimation : MonoBehaviour
     public float movementPeriod;
 
     float timer;
-    int state;
     MowerMovement movement;
 
     void Start()
     {
+        timer = 0;
         movement = GetComponent<MowerMovement>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        timer += Time.deltaTime;
-        if (movement.destination != transform.position) {
-            if (timer >= movementPeriod) {
-                UpdateAnimation();
-                timer -= movementPeriod;
-            }
+        timer += Time.fixedDeltaTime;
+        if (Vector3.Distance(movement.destination, transform.position) >= 0.1f) {
+            DoAnim(movementPeriod);
         } else {
-            if (timer >= standPeriod) {
-                UpdateAnimation();
-                timer -= standPeriod;
-            }
+            DoAnim(standPeriod);
         }
     }
 
-    void UpdateAnimation()
+    void DoAnim(float period)
     {
-        if (state == 0) {
-            transform.localScale = new Vector3(1, 0.9f, 1);
+        if (timer >= period * 4f) {
+            timer = 0f;
+        } else if (timer >= period * 3f) {
+            transform.localScale = new Vector3(1f, 1f, 1f);
             Vector3 pos = transform.position;
-            pos.y = 0.0f;
+            pos.y = 0f;
             transform.position = pos;
-            state = 1;
-        } else if (state == 1) {
-            transform.localScale = new Vector3(1, 1, 1);
+        } else if (timer >= period * 2f) {
+            transform.localScale = new Vector3(1f, 0.9f, 1f);
             Vector3 pos = transform.position;
-            pos.y = -0.05f;
+            pos.y = 0.03f;
             transform.position = pos;
-            state = 2;
-        } else if (state == 2) {
-            transform.localScale = new Vector3(1, 0.9f, 1);
+        } else if (timer >= period) {
+            transform.localScale = new Vector3(1f, 1f, 1f);
             Vector3 pos = transform.position;
-            pos.y = 0.0f;
+            pos.y = 0f;
             transform.position = pos;
-            state = 3;
         } else {
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(1f, 0.9f, 1f);
             Vector3 pos = transform.position;
-            pos.y = 0;
+            pos.y = -0.03f;
             transform.position = pos;
-            state = 0;
         }
     }
 }

@@ -12,10 +12,12 @@ public class MowerMovement : MonoBehaviour
     Vector3 direction;
     float speed;
     Gardener gardener;
+    AudioSource audioSource;
 
     void Start()
     {
         gardener = GameObject.Find("Garden").GetComponent<Gardener>();
+        audioSource = GetComponent<AudioSource>();
         destination = transform.position;
         destination.y = 0;
     }
@@ -33,6 +35,8 @@ public class MowerMovement : MonoBehaviour
             } else if (Input.GetAxisRaw("Vertical") != 0 && z >= 0 && z < gardener.voxelSize * gardener.tileSize * (gardener.gardenSize.y - 1)) {
                 destination.z = z;
                 UpdateMovement();
+            } else {
+                audioSource.clip = Resources.Load("SFX_MowerStand") as AudioClip;
             }
         } else {
             transform.position = Vector3.MoveTowards(transform.position, destination, Time.fixedDeltaTime * speed);
@@ -40,10 +44,14 @@ public class MowerMovement : MonoBehaviour
         float y = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.Euler(0, y, 0);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turningRate * Time.fixedDeltaTime);
+        if (audioSource.isPlaying == false) {
+            audioSource.Play();
+        }
     }
 
     void UpdateMovement()
     {
+        audioSource.clip = Resources.Load("SFX_MowerMovement") as AudioClip;
         direction = destination - transform.position;
         speed = moveSpeed;
         GameObject[] tiles = GameObject.FindGameObjectsWithTag("Grass");

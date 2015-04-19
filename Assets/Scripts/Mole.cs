@@ -94,6 +94,8 @@ public class Mole : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, destination, Time.fixedDeltaTime * flySpeed);
         if (transform.position.y == 0) {
+            GetComponent<AudioSource>().clip = Resources.Load("SFX_Fell") as AudioClip;
+            GetComponent<AudioSource>().Play();
             state = State.Fell;
             timer = 0f;
             ChangeModel();
