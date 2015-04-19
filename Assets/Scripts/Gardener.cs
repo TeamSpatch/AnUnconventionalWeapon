@@ -28,11 +28,6 @@ public class Gardener : MonoBehaviour
                 float y = col * tileSize * voxelSize - Mathf.Floor(tileSize / 2f) * voxelSize;
                 for (float i = 0; i < tileSize; i++) {
                     for (float j = 0; j < tileSize; j++) {
-                        if (level == 3) {
-                            bushCount += 1;
-                        } else if (level == 2) {
-                            golfCount += 1;
-                        }
                         SpawnVoxel(x + i * voxelSize, y + j * voxelSize, level);
                     }
                 }

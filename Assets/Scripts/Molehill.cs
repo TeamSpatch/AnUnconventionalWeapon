@@ -9,6 +9,7 @@ public class Molehill : MonoBehaviour
 
     void Start()
     {
+        GameObject.Find("Garden").GetComponent<Gardener>().molehillCount += 1;
         spawnTimer = spawnPeriod / 5f * 4f;
     }
 

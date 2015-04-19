@@ -22,7 +22,6 @@ public class MoleMaster : MonoBehaviour
             Vector3 pos = GetFreeTile();
             pos.y = -0.6f;
             Instantiate(Resources.Load("Molehill"), pos, Quaternion.Euler(0f, Random.Range(0, 4) * 90f, 0f));
-            gardener.molehillCount += 1;
             molehillTimer = molehillTimer - molehillPeriod;
         }
     }

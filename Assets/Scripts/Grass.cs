@@ -16,6 +16,14 @@ public class Grass : MonoBehaviour
         }
         set
         {
+            Gardener gardener = GameObject.Find("Garden").GetComponent<Gardener>();
+            if (level == 0) {
+                gardener.clayCount -= 1;
+            } else if (level == 2) {
+                gardener.golfCount -= 1;
+            } else if (level == 3) {
+                gardener.bushCount -= 1;
+            }
             if (value < 0) {
                 level = 0;
             } else {
@@ -27,12 +35,15 @@ public class Grass : MonoBehaviour
             rend.material = materials[level];
             if (level == 0) {
                 transform.localScale = new Vector3(transform.localScale.x, heightUnit, transform.localScale.z);
+                gardener.clayCount += 1;
             } else if (level == 1) {
                 transform.localScale = new Vector3(transform.localScale.x, heightUnit * 2, transform.localScale.z);
             } else if (level == 2) {
                 transform.localScale = new Vector3(transform.localScale.x, heightUnit * 3, transform.localScale.z);
+                gardener.golfCount += 1;
             } else if (level == 3) {
                 transform.localScale = new Vector3(transform.localScale.x, heightUnit * 4, transform.localScale.z);
+                gardener.bushCount += 1;
             } else if (level == 4) {
                 transform.localScale = new Vector3(transform.localScale.x, heightUnit * 5, transform.localScale.z);
             }
@@ -40,5 +51,5 @@ public class Grass : MonoBehaviour
         }
     }
 
-    int level = 0;
+    int level = -1;
 }
