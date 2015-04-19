@@ -24,7 +24,7 @@ public class Mole : MonoBehaviour
 
     State state;
     float timer;
-    int count;
+    int count = 0;
     Vector3 destination;
 
     void Start()

@@ -6,6 +6,10 @@ public class Gardener : MonoBehaviour
     public Vector2 gardenSize;
     public float tileSize;
     public float voxelSize;
+    [HideInInspector]
+    public int killCount = 0;
+    [HideInInspector]
+    public int sackCount = 0;
 
     void Start()
     {

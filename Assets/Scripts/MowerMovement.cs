@@ -70,11 +70,13 @@ public class MowerMovement : MonoBehaviour
                         if (mole.GetComponent<Mole>() != null) {
                             Vector3 pos = mole.transform.position;
                             pos.y = 0.3f;
+                            gardener.killCount += 1;
                             Instantiate(Resources.Load("Blood"), pos, Quaternion.identity);
+                        } else {
+                            gardener.sackCount += 1;
                         }
                         Destroy(mole);
                         mowed = true;
-                        break;
                     }
                 }
             }
