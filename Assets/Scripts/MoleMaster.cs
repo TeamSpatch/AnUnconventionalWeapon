@@ -20,9 +20,8 @@ public class MoleMaster : MonoBehaviour
         molehillTimer += Time.deltaTime;
         if (molehillTimer >= molehillPeriod) {
             Vector3 pos = GetFreeTile();
-            GameObject molehill = Instantiate(Resources.Load("Molehill")) as GameObject;
-            pos.y = molehill.transform.position.y;
-            molehill.transform.position = pos;
+            pos.y = -0.6f;
+            Instantiate(Resources.Load("Molehill"), pos, Quaternion.identity);
             molehillTimer = molehillTimer - molehillPeriod;
         }
     }

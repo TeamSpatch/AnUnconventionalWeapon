@@ -5,20 +5,22 @@ public class Molehill : MonoBehaviour
 {
     public float spawnPeriod;
 
-    Vector3 destination;
     float spawnTimer;
 
     void Start()
     {
-        destination = transform.position;
-        destination.y = 0f;
         spawnTimer = spawnPeriod;
     }
 
     void FixedUpdate()
     {
         if (transform.position.y < 0f) {
-            transform.position = Vector2.MoveTowards(transform.position, destination, Time.fixedDeltaTime * 1.3f);
+            Vector3 pos = transform.position;
+            pos.y += Time.fixedDeltaTime;
+            if (pos.y > 0) {
+                pos.y = 0;
+            }
+            transform.position = pos;
         } else {
             spawnTimer += Time.fixedDeltaTime;
             if (spawnTimer >= spawnPeriod) {
