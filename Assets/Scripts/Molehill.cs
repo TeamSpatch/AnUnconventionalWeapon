@@ -4,7 +4,9 @@ using System.Collections;
 public class Molehill : MonoBehaviour
 {
     public float spawnPeriod;
+    public int spawnMax;
 
+    int spawnCount;
     float spawnTimer;
 
     void Start()
@@ -23,11 +25,14 @@ public class Molehill : MonoBehaviour
             }
             transform.position = pos;
         } else {
-            spawnTimer += Time.fixedDeltaTime;
-            if (spawnTimer >= spawnPeriod) {
-                GameObject mole = Instantiate(Resources.Load("Mole")) as GameObject;
-                mole.transform.position = transform.position;
-                spawnTimer -= spawnPeriod;
+            if (spawnCount < spawnMax) {
+                spawnTimer += Time.fixedDeltaTime;
+                if (spawnTimer >= spawnPeriod) {
+                    GameObject mole = Instantiate(Resources.Load("Mole")) as GameObject;
+                    mole.transform.position = transform.position;
+                    spawnTimer -= spawnPeriod;
+                    spawnCount += 1;
+                }
             }
         }
     }
