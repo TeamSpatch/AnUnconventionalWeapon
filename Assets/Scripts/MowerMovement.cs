@@ -67,6 +67,11 @@ public class MowerMovement : MonoBehaviour
             if (mole.transform.position.x >= x && mole.transform.position.x < x + l) {
                 if (mole.transform.position.z >= z && mole.transform.position.z < z + l) {
                     if (mole.transform.position.y <= 0.5f) {
+                        if (mole.GetComponent<Mole>() != null) {
+                            Vector3 pos = mole.transform.position;
+                            pos.y = 0.3f;
+                            Instantiate(Resources.Load("Blood"), pos, Quaternion.identity);
+                        }
                         Destroy(mole);
                         mowed = true;
                         break;

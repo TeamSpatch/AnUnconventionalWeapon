@@ -22,10 +22,10 @@ public class CameraFollow : MonoBehaviour
         } else if (pos.x > (gardener.gardenSize.x - 5) * gardener.voxelSize * gardener.tileSize) {
             pos.x = (gardener.gardenSize.x - 5) * gardener.voxelSize * gardener.tileSize;
         }
-        if (pos.z < -2 * gardener.voxelSize * gardener.tileSize) {
-            pos.z = -2 * gardener.voxelSize * gardener.tileSize;
-        } else if (pos.z > (gardener.gardenSize.y - 11) * gardener.voxelSize * gardener.tileSize) {
-            pos.z = (gardener.gardenSize.y - 11) * gardener.voxelSize * gardener.tileSize;
+        if (pos.z < -6 * gardener.voxelSize * gardener.tileSize) {
+            pos.z = -6 * gardener.voxelSize * gardener.tileSize;
+        } else if (pos.z > (gardener.gardenSize.y - 14) * gardener.voxelSize * gardener.tileSize) {
+            pos.z = (gardener.gardenSize.y - 14) * gardener.voxelSize * gardener.tileSize;
         }
         transform.position = pos;
     }

@@ -34,7 +34,7 @@ public class MoleMaster : MonoBehaviour
             pos.x = Random.Range(0, (int)gardener.gardenSize.x);
             pos.z = Random.Range(0, (int)gardener.gardenSize.y);
             pos = pos * gardener.voxelSize * gardener.tileSize;
-            if (Vector3.Distance(pos, player.position) >= gardener.tileSize * gardener.voxelSize * 2) {
+            if (Vector3.Distance(pos, player.position) >= gardener.tileSize * gardener.voxelSize) {
                 bool ok = true;
                 foreach (GameObject mole in moles) {
                     if (Vector3.Distance(pos, mole.transform.position) < gardener.tileSize * gardener.voxelSize * 2) {

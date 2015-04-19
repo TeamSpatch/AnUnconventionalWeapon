@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Grass : MonoBehaviour
 {
-    public float unit;
+    public float heightUnit;
     public Material[] materials;
 
     MeshRenderer rend;
@@ -26,15 +26,15 @@ public class Grass : MonoBehaviour
             }
             rend.material = materials[level];
             if (level == 0) {
-                transform.localScale = new Vector3(transform.localScale.x, unit, transform.localScale.z);
+                transform.localScale = new Vector3(transform.localScale.x, heightUnit, transform.localScale.z);
             } else if (level == 1) {
-                transform.localScale = new Vector3(transform.localScale.x, unit * 2, transform.localScale.z);
+                transform.localScale = new Vector3(transform.localScale.x, heightUnit * 2, transform.localScale.z);
             } else if (level == 2) {
-                transform.localScale = new Vector3(transform.localScale.x, unit * 3, transform.localScale.z);
+                transform.localScale = new Vector3(transform.localScale.x, heightUnit * 3, transform.localScale.z);
             } else if (level == 3) {
-                transform.localScale = new Vector3(transform.localScale.x, unit * 4, transform.localScale.z);
+                transform.localScale = new Vector3(transform.localScale.x, heightUnit * 4, transform.localScale.z);
             } else if (level == 4) {
-                transform.localScale = new Vector3(transform.localScale.x, unit * 5, transform.localScale.z);
+                transform.localScale = new Vector3(transform.localScale.x, heightUnit * 5, transform.localScale.z);
             }
             transform.position = new Vector3(transform.position.x, transform.localScale.y / 2f, transform.position.z);
         }
