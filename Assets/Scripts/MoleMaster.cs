@@ -21,12 +21,12 @@ public class MoleMaster : MonoBehaviour
         if (molehillTimer >= molehillPeriod) {
             Vector3 pos = GetFreeTile();
             pos.y = -0.6f;
-            Instantiate(Resources.Load("Molehill"), pos, Quaternion.identity);
+            Instantiate(Resources.Load("Molehill"), pos, Quaternion.Euler(0f, Random.Range(0, 4) * 90f, 0f));
             molehillTimer = molehillTimer - molehillPeriod;
         }
     }
 
-    Vector3 GetFreeTile()
+    public Vector3 GetFreeTile()
     {
         Vector3 pos = new Vector3();
         GameObject[] moles = GameObject.FindGameObjectsWithTag("Mole");
