@@ -61,10 +61,25 @@ public class MowerMovement : MonoBehaviour
         float x = destination.x - Mathf.Floor(gardener.tileSize / 2f) * gardener.voxelSize;
         float z = destination.z - Mathf.Floor(gardener.tileSize / 2f) * gardener.voxelSize;
         float l = gardener.tileSize * gardener.voxelSize;
-        foreach (GameObject grass in tiles) {
-            if (grass.transform.position.x >= x && grass.transform.position.x < x + l) {
-                if (grass.transform.position.z >= z && grass.transform.position.z < z + l) {
-                    grass.GetComponent<Grass>().Level = grass.GetComponent<Grass>().Level - 1;
+        bool mowed = false;
+        GameObject[] moles = GameObject.FindGameObjectsWithTag("Mole");
+        foreach (GameObject mole in moles) {
+            if (mole.transform.position.x >= x && mole.transform.position.x < x + l) {
+                if (mole.transform.position.z >= z && mole.transform.position.z < z + l) {
+                    if (mole.transform.position.y <= 0.5f) {
+                        Destroy(mole);
+                        mowed = true;
+                        break;
+                    }
+                }
+            }
+        }
+        if (mowed == false) {
+            foreach (GameObject grass in tiles) {
+                if (grass.transform.position.x >= x && grass.transform.position.x < x + l) {
+                    if (grass.transform.position.z >= z && grass.transform.position.z < z + l) {
+                        grass.GetComponent<Grass>().Level = grass.GetComponent<Grass>().Level - 1;
+                    }
                 }
             }
         }
