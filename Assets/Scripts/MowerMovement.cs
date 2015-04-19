@@ -83,6 +83,7 @@ public class MowerMovement : MonoBehaviour
                             Instantiate(Resources.Load("Blood"), pos, Quaternion.identity);
                         } else {
                             gardener.sackCount += 1;
+                            gardener.molehillCount -= 1;
                         }
                         Destroy(mole);
                         mowed = true;
@@ -94,6 +95,16 @@ public class MowerMovement : MonoBehaviour
             foreach (GameObject grass in tiles) {
                 if (grass.transform.position.x >= x && grass.transform.position.x < x + l) {
                     if (grass.transform.position.z >= z && grass.transform.position.z < z + l) {
+                        if (grass.GetComponent<Grass>().Level == 4) {
+                            gardener.bushCount += 1;
+                        } else if (grass.GetComponent<Grass>().Level == 3) {
+                            gardener.bushCount -= 1;
+                            gardener.golfCount += 1;
+                        } else if (grass.GetComponent<Grass>().Level == 2) {
+                            gardener.golfCount -= 1;
+                        } else if (grass.GetComponent<Grass>().Level == 1) {
+                            gardener.clayCount += 1;
+                        }
                         grass.GetComponent<Grass>().Level = grass.GetComponent<Grass>().Level - 1;
                     }
                 }
