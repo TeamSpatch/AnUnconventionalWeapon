@@ -6,8 +6,9 @@ public class MowerMovement : MonoBehaviour
     public float moveSpeed;
     public float speedLevelMod;
     public float turningRate;
+    [HideInInspector]
+    public Vector3 destination;
 
-    Vector3 destination;
     Vector3 direction;
     float speed;
     Gardener gardener;
