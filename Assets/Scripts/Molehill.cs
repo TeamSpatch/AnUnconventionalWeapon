@@ -9,7 +9,7 @@ public class Molehill : MonoBehaviour
 
     void Start()
     {
-        spawnTimer = spawnPeriod / 3;
+        spawnTimer = spawnPeriod / 2;
     }
 
     void FixedUpdate()
