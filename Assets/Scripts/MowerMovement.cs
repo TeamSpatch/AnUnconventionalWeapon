@@ -58,7 +58,7 @@ public class MowerMovement : MonoBehaviour
         foreach (GameObject grass in tiles) {
             if (destination.x >= grass.transform.position.x && destination.x < grass.transform.position.x + gardener.voxelSize) {
                 if (destination.z >= grass.transform.position.z && destination.z < grass.transform.position.z + gardener.voxelSize) {
-                    speed = moveSpeed - speedLevelMod * grass.GetComponent<Grass>().Level;
+                    speed = moveSpeed - speedLevelMod * (grass.GetComponent<Grass>().Level - 0.2f);
                 }
             }
         }
