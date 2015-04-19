@@ -24,8 +24,8 @@ public class CameraFollow : MonoBehaviour
         }
         if (pos.z < -6 * gardener.voxelSize * gardener.tileSize) {
             pos.z = -6 * gardener.voxelSize * gardener.tileSize;
-        } else if (pos.z > (gardener.gardenSize.y - 14) * gardener.voxelSize * gardener.tileSize) {
-            pos.z = (gardener.gardenSize.y - 14) * gardener.voxelSize * gardener.tileSize;
+        } else if (pos.z > (gardener.gardenSize.y - 13) * gardener.voxelSize * gardener.tileSize) {
+            pos.z = (gardener.gardenSize.y - 13) * gardener.voxelSize * gardener.tileSize;
         }
         transform.position = pos;
     }

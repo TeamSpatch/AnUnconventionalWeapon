@@ -28,9 +28,10 @@ public class MoleMaster : MonoBehaviour
 
     public Vector3 GetFreeTile()
     {
+        int turn = 0;
         Vector3 pos = new Vector3();
         GameObject[] moles = GameObject.FindGameObjectsWithTag("Mole");
-        while (true) {
+        while (turn < 20) {
             pos.x = Random.Range(0, (int)gardener.gardenSize.x);
             pos.z = Random.Range(0, (int)gardener.gardenSize.y);
             pos = pos * gardener.voxelSize * gardener.tileSize;
@@ -46,6 +47,7 @@ public class MoleMaster : MonoBehaviour
                     break;
                 }
             }
+            ++turn;
         }
         return pos;
     }
