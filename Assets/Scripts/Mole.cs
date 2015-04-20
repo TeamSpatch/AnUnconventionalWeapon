@@ -176,4 +176,10 @@ public class Mole : MonoBehaviour
             }
         }
     }
+
+    void OnDestroy()
+    {
+        GetComponent<AudioSource>().clip = Resources.Load("SFX_Kill") as AudioClip;
+        GetComponent<AudioSource>().Play();
+    }
 }
