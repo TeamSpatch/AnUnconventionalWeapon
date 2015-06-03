@@ -176,4 +176,10 @@ public class Mole : MonoBehaviour
             }
         }
     }
+
+    void OnDestroy()
+    {
+        GameObject.Find("Garden").GetComponent<AudioSource>().clip = Resources.Load("SFX_Kill") as AudioClip;
+        GameObject.Find("Garden").GetComponent<AudioSource>().Play();
+    }
 }
